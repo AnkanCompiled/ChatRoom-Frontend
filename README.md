@@ -1,8 +1,22 @@
-# React + Vite
+# ChatRoom
+A better version of GroupMessage where people can chat in both rooms and personal and send image link etc..
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Features
 
-Currently, two official plugins are available:
+- **Real-time Messaging:** Chat in real-time with your friends and groups.
+- **Personal Chat:** One-to-one conversations with other users.
+- **Group Chat:** Create and join group chats with multiple users.
+- **Add Contacts:** Add people to your contact list.
+- **Typing Indicators:** See when others are typing.
+- **Message Read/Delivered Status:** Visual indicators for message status.
+- **User Authentication:** Secure login and registration using JWT.
+- **Responsive Design:** Works on both desktop and mobile devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Tech Stack
+
+- **Frontend:** React.js
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Real-time Communication:** Socket.io
+- **Authentication:** JWT (JSON Web Tokens)
+
