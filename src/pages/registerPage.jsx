@@ -64,7 +64,19 @@ export default function Register() {
     <div className="log-container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        <div></div>
+        <div>
+          <input
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailError("");
+            }}
+            onBlur={emailOnBlur}
+            className={emailError === "" ? "inputNoError" : "inputError"}
+            placeholder="Enter Email"
+            required
+          />
+        </div>
         <div>
           <input
             value={username}
