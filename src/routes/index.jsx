@@ -1,6 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import { DashboardPage, LoginPage, RegisterPage } from "../pages";
+import {
+  DashboardPage,
+  LoginPage,
+  RegisterPage,
+  ForgetPasswordPage,
+} from "../pages";
 
 import { isAuthinticated } from "../auth";
 
@@ -26,6 +31,7 @@ export default function Routing() {
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forget_password" element={<ForgetPasswordPage />} />
         </Routes>
       </BrowserRouter>
     </>

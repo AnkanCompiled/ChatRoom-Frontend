@@ -1,24 +1,46 @@
 .log-container {
   background-color: #1f1f1f;
   padding: 50px;
+  border-radius: 10px;
 }
 
+.error {
+  margin: 0;
+  text-align: left;
+  color: crimson;
+}
+
+.inputError {
+  border-color: crimson;
+  background-color: hsl(348, 100%, 95%);
+}
+
+.inputNoError {
+  background-color: none;
+  border-color: none;
+}
 h2 {
   text-align: left;
 }
-
 input {
   margin-top: 10px;
   min-width: 300px;
   min-height: 40px;
   font-size: 16px;
   border-radius: 10px;
-  outline: none;
 }
+input[type="checkbox"] {
+  margin-top: 10px;
+  margin-right: 10px;
+  min-width: 0;
+  min-height: 0;
+  transform: scale(1.5);
+}
+
 input:hover {
   border-color: #646cff;
 }
 
 button {
-  margin-top: 10px;
+  margin: 10px;
 }
