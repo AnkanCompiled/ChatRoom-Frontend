@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { loginUser } from "../services/userService";
+import { setPersistentCookies, setSessionCookies } from "../utils/cookieUtil";
 import "../styles/loginStyle.css";
 
 export default function Login() {
@@ -18,9 +19,23 @@ export default function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     if (usernameError === "" && passwordError === "") {
-      const checkEmailExistence = async () => {
+      const checkData = async () => {
         await loginUser(username, password);
       };
+      if (checkData.status === "success") {
+        if (checkboxBool === true) {
+          setPersistentCookies(checkData.token);
+        } else {
+          setSessionCookies(checkData.token);
+        }
+        setStatus("Login Successful");
+      } else if (checkData.status === "invalid username") {
+        setUsernameError("Username Not Found");
+      } else if (checkData.status === "invalid password") {
+        setPasswordError("Password Doesnot Match");
+      } else {
+        setStatus(checkData.error);
+      }
     }
   }
 
@@ -65,7 +80,7 @@ export default function Login() {
         <div>{usernameError && <p className="error">{usernameError}</p>}</div>
         <div>{passwordError && <p className="error">{passwordError}</p>}</div>
         <div>
-          <button type="submit">Sign Up</button>
+          <button type="submit">Sign In</button>
         </div>
         <div>{status && <p className="status">{status}</p>}</div>
         <div>

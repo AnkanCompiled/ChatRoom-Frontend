@@ -42,20 +42,20 @@ export default function Register() {
   function handleSubmit(e) {
     e.preventDefault();
     if (emailError === "" && usernameError === "" && passwordError === "") {
-      const checkEmailExistence = async () => {
+      const checkData = async () => {
         await registerUser(email, username, password);
       };
-      if (checkEmailExistence.status === "success") {
+      if (checkData.status === "success") {
         setStatus("Registered Successfully");
         setTimeout(() => {
           window.location.reload();
         }, 500);
-      } else if (checkEmailExistence.status === "email exists") {
+      } else if (checkData.status === "email exists") {
         setEmailError("Email Already Exists.");
-      } else if (checkEmailExistence.status === "username exists") {
+      } else if (checkData.status === "username exists") {
         setUsernameError("Username Already Exists.");
       } else {
-        setStatus(checkEmailExistence.error);
+        setStatus(checkData.error);
       }
     }
   }

@@ -15,6 +15,33 @@ async function registerUser(email, username, password) {
       return { error: error };
     });
 }
-async function loginUser(username, password) {}
+async function loginUser(username, password) {
+  await axios
+    .post(BACKEND_URL + "/login", {
+      username: username,
+      password: password,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      return { error: error };
+    });
+}
 
-export { registerUser, loginUser };
+async function userData(token) {
+  await axios
+    .get(BACKEND_URL + "/user", {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      return false;
+    });
+}
+
+export { registerUser, loginUser, userData };
