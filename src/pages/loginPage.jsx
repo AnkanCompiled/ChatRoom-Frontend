@@ -1,29 +1,27 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { EMAIL_REGEX } from "../config";
+import { loginUser } from "../services/userService";
 import "../styles/loginStyle.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [status, setStatus] = useState("");
   const [checkboxBool, setCheckboxBool] = useState(true);
 
   function handleCheckbox(e) {
     setCheckboxBool(e.target.checked);
   }
 
-  function typeUsername(e) {
-    setUsername(e.target.value);
-  }
-
-  function typePassword(e) {
-    setPassword(e.target.value);
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    setError("");
+    if (usernameError === "" && passwordError === "") {
+      const checkEmailExistence = async () => {
+        await loginUser(username, password);
+      };
+    }
   }
 
   return (
@@ -33,8 +31,11 @@ export default function Login() {
         <div>
           <input
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className={typeUsername}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              setUsernameError("");
+            }}
+            className={usernameError === "" ? "inputNoError" : "inputError"}
             placeholder="Enter Username"
             required
           />
@@ -43,8 +44,11 @@ export default function Login() {
           <input
             type="password"
             value={password}
-            onChange={typePassword}
-            className={error === "" ? "inputNoError" : "inputError"}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setPasswordError("");
+            }}
+            className={passwordError === "" ? "inputNoError" : "inputError"}
             placeholder="Enter Password"
             required
           />
@@ -58,10 +62,12 @@ export default function Login() {
           <label>Remember Me</label>
           <Link to="/forget_password">Forgot Password?</Link>
         </div>
-        <div>{error && <p className="error">{error}</p>}</div>
+        <div>{usernameError && <p className="error">{usernameError}</p>}</div>
+        <div>{passwordError && <p className="error">{passwordError}</p>}</div>
         <div>
           <button type="submit">Sign Up</button>
         </div>
+        <div>{status && <p className="status">{status}</p>}</div>
         <div>
           <Link to="/register">New User? Sign Up</Link>
         </div>
