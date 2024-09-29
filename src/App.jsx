@@ -1,10 +1,13 @@
 import Routing from "./routes";
+import { AuthProvider } from "./contexts/authContext";
 import "./App.css";
 
 export default function App() {
   return (
     <>
-      <Routing />
+      <AuthProvider>
+        <Routing />
+      </AuthProvider>
     </>
   );
 }
